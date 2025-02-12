@@ -2,15 +2,19 @@
 
 public class Board
 {
+	// List Of Possible Pieces 
 	public List<Piece> Pieces { get; }
 
+	// List Of Possible Captures 
 	public Piece? Aggressor { get; set; }
 
+    // Updating Initial Position Of Piece To New Position
 	public Piece? this[int x, int y] =>
 		Pieces.FirstOrDefault(piece => piece.X == x && piece.Y == y);
 
 	public Board()
 	{
+		// Creating Position For Initial Selection
 		Aggressor = null;
 		Pieces = new List<Piece>
 			{
@@ -42,12 +46,14 @@ public class Board
 			};
 	}
 
+    // Setting Up Label To Be Equal X & Y Value
 	public static string ToPositionNotationString(int x, int y)
 	{
 		if (!IsValidPosition(x, y)) throw new ArgumentException("Not a valid position!");
 		return $"{(char)('A' + x)}{y + 1}";
 	}
 
+	// Converting Notation To Equal A Label Position
 	public static (int X, int Y) ParsePositionNotation(string notation)
 	{
 		if (notation is null) throw new ArgumentNullException(nameof(notation));
@@ -59,14 +65,18 @@ public class Board
 		return (notation[0] - 'A', notation[1] - '1');
 	}
 
+    // Determing That Piece Cannot Be Move There 
 	public static bool IsValidPosition(int x, int y) =>
 		0 <= x && x < 8 &&
 		0 <= y && y < 8;
 
+    // Determines Closest Possible Capturable Piece
 	public (Piece A, Piece B) GetClosestRivalPieces(PieceColor priorityColor)
 	{
 		double minDistanceSquared = double.MaxValue;
 		(Piece A, Piece B) closestRivals = (null!, null!);
+
+		// Does So By Opposing Color
 		foreach (Piece a in Pieces.Where(piece => piece.Color == priorityColor))
 		{
 			foreach (Piece b in Pieces.Where(piece => piece.Color != priorityColor))
@@ -83,6 +93,7 @@ public class Board
 		return closestRivals;
 	}
 
+    // Possible Movement Locations Updates For Color
 	public List<Move> GetPossibleMoves(PieceColor color)
 	{
 		List<Move> moves = new();
@@ -106,6 +117,7 @@ public class Board
 			: moves;
 	}
 
+	// Possible Movement Locations Updates For Piece Coordinates
 	public List<Move> GetPossibleMoves(Piece piece)
 	{
 		List<Move> moves = new();
@@ -117,19 +129,24 @@ public class Board
 			? moves.Where(move => move.PieceToCapture is not null).ToList()
 			: moves;
 
+        // Check For Conflicting Pieces 
 		void ValidateDiagonalMove(int dx, int dy)
 		{
+			// Checks If Piece Hasn't Reached Promotion Location
 			if (!piece.Promoted && piece.Color is Black && dy is -1) return;
 			if (!piece.Promoted && piece.Color is White && dy is 1) return;
 			(int X, int Y) target = (piece.X + dx, piece.Y + dy);
 			if (!IsValidPosition(target.X, target.Y)) return;
 			PieceColor? targetColor = this[target.X, target.Y]?.Color;
+
+			// Check If Opposing Piece Is Not In Range
 			if (targetColor is null)
 			{
 				if (!IsValidPosition(target.X, target.Y)) return;
 				Move newMove = new(piece, target);
 				moves.Add(newMove);
 			}
+			// Check That Color Isn't The Same
 			else if (targetColor != piece.Color)
 			{
 				(int X, int Y) jump = (piece.X + 2 * dx, piece.Y + 2 * dy);
@@ -143,6 +160,7 @@ public class Board
 	}
 
 	/// <summary>Returns a <see cref="Move"/> if <paramref name="from"/>-&gt;<paramref name="to"/> is valid or null if not.</summary>
+	/// // Validates If The Piece Can Move There 
 	public Move? ValidateMove(PieceColor color, (int X, int Y) from, (int X, int Y) to)
 	{
 		Piece? piece = this[from.X, from.Y];
@@ -160,6 +178,7 @@ public class Board
 		return null;
 	}
 
+    // Updates Piece Onto That Position On The Board
 	public static bool IsTowards(Move move, Piece piece)
 	{
 		(int Dx, int Dy) a = (move.PieceToMove.X - piece.X, move.PieceToMove.Y - piece.Y);
