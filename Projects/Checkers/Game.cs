@@ -1,5 +1,6 @@
 ﻿namespace Checkers;
 
+// Testing 12 Changes Rn
 public class Game
 {
 	// Number Of Colors Possible Per Type Of Piece (Black & White)
