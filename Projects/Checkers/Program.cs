@@ -1,8 +1,8 @@
 ﻿// Louis Arriaza Erazo
-// Date: 2/4/25
+// Date: 2/18/25
 
-//  Changes Ideas
-//
+//  Updated Movement From All Directions
+// 
 
 Exception? exception = null;
 
