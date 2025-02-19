@@ -1,6 +1,6 @@
 ﻿namespace Checkers;
 
-// Testing 12 Changes Rn
+// Testing 12 Changes Rn Github test
 public class Game
 {
 	// Number Of Colors Possible Per Type Of Piece (Black & White)
@@ -55,25 +55,25 @@ public class Game
 			Board.Aggressor = null;
 			Turn = Turn is Black ? White : Black;
 		}
-		CheckForWinner();
+		// CheckForWinner();
 	}
 
     // Checking There's Any Pieces Left Of Opposing Color
-	public void CheckForWinner()
-	{
-		if (!Board.Pieces.Any(piece => piece.Color is Black))
-		{
-			Winner = White;
-		}
-		if (!Board.Pieces.Any(piece => piece.Color is White))
-		{
-			Winner = Black;
-		}
-		if (Winner is null && Board.GetPossibleMoves(Turn).Count is 0)
-		{
-			Winner = Turn is Black ? White : Black;
-		}
-	}
+	// public void CheckForWinner()
+	// {
+	// 	if (!Board.Pieces.Any(piece => piece.Color is Black))
+	// 	{
+	// 		Winner = White;
+	// 	}
+	// 	if (!Board.Pieces.Any(piece => piece.Color is White))
+	// 	{
+	// 		Winner = Black;
+	// 	}
+	// 	if (Winner is null && Board.GetPossibleMoves(Turn).Count is 0)
+	// 	{
+	// 		Winner = Turn is Black ? White : Black;
+	// 	}
+	// }
 
 	public int TakenCount(PieceColor colour) =>
 		PiecesPerColor - Board.Pieces.Count(piece => piece.Color == colour);

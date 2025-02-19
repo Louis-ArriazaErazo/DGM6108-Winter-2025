@@ -121,20 +121,31 @@ public class Board
 	public List<Move> GetPossibleMoves(Piece piece)
 	{
 		List<Move> moves = new();
-		ValidateDiagonalMove(-1, -1);
-		ValidateDiagonalMove(-1,  1);
-		ValidateDiagonalMove( 1, -1);
-		ValidateDiagonalMove( 1,  1);
+		// Rise & Run From Coordinates (Diganolly)
+		ValidateMovement(-1, -1); // Down & Left
+		ValidateMovement(-1, 1);  // Down & Right
+		ValidateMovement(1, -1);  // Up & Left
+		ValidateMovement(1,  1);  // Up & Right
+
+       // Rise & Run From Coordinates (Vertically & Horitzonally)
+		ValidateMovement(0, -1);  // Left
+		ValidateMovement(0,1);   // Right
+		ValidateMovement(-1,0);  // Down
+		ValidateMovement(1,0);   // Up
+
 		return moves.Any(move => move.PieceToCapture is not null)
 			? moves.Where(move => move.PieceToCapture is not null).ToList()
 			: moves;
 
         // Check For Conflicting Pieces 
-		void ValidateDiagonalMove(int dx, int dy)
+		void ValidateMovement(int dx, int dy)
 		{
-			// Checks If Piece Hasn't Reached Promotion Location
+			// Checks If Piece Is Moving Diagonally 
+            if( dx != 0 && dy != 0){
 			if (!piece.Promoted && piece.Color is Black && dy is -1) return;
 			if (!piece.Promoted && piece.Color is White && dy is 1) return;
+			}
+			
 			(int X, int Y) target = (piece.X + dx, piece.Y + dy);
 			if (!IsValidPosition(target.X, target.Y)) return;
 			PieceColor? targetColor = this[target.X, target.Y]?.Color;
