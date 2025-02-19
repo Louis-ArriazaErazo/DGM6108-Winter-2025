@@ -53,7 +53,16 @@ public class Game
 		else
 		{
 			Board.Aggressor = null;
-			Turn = Turn is Black ? White : Black;
+			// Add Randomizing Who's Turn It Is
+			Random randomturn = new Random();
+			int colorTurn = randomturn.Next(0, 2);
+			
+			// Randomize It But Has It That The Opposing Color Follows
+			if(colorTurn == 1){
+				Turn = Turn is Black ? White : Black;
+			} else if(colorTurn == 2){
+			Turn = Turn is White ? Black : White;
+			}
 		}
 		// CheckForWinner();
 	}

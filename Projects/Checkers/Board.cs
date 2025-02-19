@@ -145,7 +145,6 @@ public class Board
 			if (!piece.Promoted && piece.Color is Black && dy is -1) return;
 			if (!piece.Promoted && piece.Color is White && dy is 1) return;
 			}
-			
 			(int X, int Y) target = (piece.X + dx, piece.Y + dy);
 			if (!IsValidPosition(target.X, target.Y)) return;
 			PieceColor? targetColor = this[target.X, target.Y]?.Color;
