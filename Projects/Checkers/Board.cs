@@ -1,4 +1,6 @@
-﻿namespace Checkers;
+﻿using System.Reflection;
+
+namespace Checkers;
 
 public class Board
 {
