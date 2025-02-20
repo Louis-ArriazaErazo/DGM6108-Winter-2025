@@ -1,4 +1,7 @@
-﻿namespace Checkers;
+﻿using System.ComponentModel.Design.Serialization;
+using System.Security.Cryptography;
+
+namespace Checkers;
 
 // Testing 12 Changes Rn Github test
 public class Game
@@ -44,7 +47,8 @@ public class Game
 		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 3) ||
 			(move.PieceToMove.Color is White && TakenCount(Black) >= 3))
 		{
-			move.PieceToMove.PowerIncrease = true; // Promote If Conditions Above Are Met
+			move.PieceToMove.PowerIncrease = true;
+			move.PieceToMove.Promoted = true;       // Promote If Conditions Above Are Met
 		}
 		if (move.PieceToCapture is not null)
 		{
@@ -58,17 +62,28 @@ public class Game
 		else
 		{
 			Board.Aggressor = null;
-			// Add Randomizing Who's Turn It Is
+			//Add Randomizing Who's Turn It Is
 			Random randomturn = new Random();
 			int colorTurn = randomturn.Next(0, 2);
 			
+			// int WhiteTaken = TakenCount(White) - 1;
+			// int BlackTaken = TakenCount(Black) - 1;
+
 			// Randomize It But Has It That The Opposing Color Follows
 			if(colorTurn == 1){
 				Turn = Turn is Black ? White : Black;
 			} else if(colorTurn == 2){
 			Turn = Turn is White ? Black : White;
 			}
-		}
+
+			// Check If A Piece Wasn't Taken, Change To Opposing Color
+			if(TakenCount(White) > 1 && Turn is Black){
+				Turn = White;
+			}
+			else if(TakenCount(Black) > 1 && Turn is White){
+				Turn = Black;
+			}
+		}  
 		// CheckForWinner();
 	}
 
