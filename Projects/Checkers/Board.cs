@@ -133,6 +133,15 @@ public class Board
 		ValidateMovement(-1,0);  // Down
 		ValidateMovement(1,0);   // Up
 
+
+	// If A Piece Reaches Power Increase, Movement Is Updated 
+		if(piece.PowerIncrease && piece.Promoted){
+		ValidateMovement(0, -2);  // Left
+		ValidateMovement(0,2);   // Right
+		ValidateMovement(-2,0);  // Down
+		ValidateMovement(2,0);  // Up
+		}
+
 		return moves.Any(move => move.PieceToCapture is not null)
 			? moves.Where(move => move.PieceToCapture is not null).ToList()
 			: moves;

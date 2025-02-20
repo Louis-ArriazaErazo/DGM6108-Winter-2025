@@ -20,4 +20,6 @@ public class Piece
 
  // Changing Piece Type Based On Position 
 	public bool Promoted { get; set; }
+
+	public bool PowerIncrease { get; set; }
 }

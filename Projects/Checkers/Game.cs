@@ -41,6 +41,11 @@ public class Game
 		{
 			move.PieceToMove.Promoted = true; // Promote If Conditions Above Are Met
 		}
+		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 3) ||
+			(move.PieceToMove.Color is White && TakenCount(Black) >= 3))
+		{
+			move.PieceToMove.PowerIncrease = true; // Promote If Conditions Above Are Met
+		}
 		if (move.PieceToCapture is not null)
 		{
 			Board.Pieces.Remove(move.PieceToCapture);  // Capture Piece
