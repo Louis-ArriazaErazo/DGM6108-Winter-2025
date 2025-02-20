@@ -31,7 +31,18 @@ public class Game
 			new Player(humanPlayerCount >= 1, Black),
 			new Player(humanPlayerCount >= 2, White),
 		};
-		Turn = Black;  // Updates Turn 
+		Random randomturn = new Random();
+			int colorTurn = randomturn.Next(0, 2);
+
+			// int WhiteTaken = TakenCount(White) - 1;
+			// int BlackTaken = TakenCount(Black) - 1;
+
+			// Randomize It But Has It That The Opposing Color Follows
+			if(colorTurn == 0){
+				Turn = Black;
+			} else {
+			Turn = White;
+			} // Updates Turn 
 		Winner = null; //  As Winner Set To Null Due To No Winner
 	}
 
@@ -63,19 +74,8 @@ public class Game
 		{
 			Board.Aggressor = null;
 			//Add Randomizing Who's Turn It Is
-			Random randomturn = new Random();
-			int colorTurn = randomturn.Next(0, 2);
 			
-			// int WhiteTaken = TakenCount(White) - 1;
-			// int BlackTaken = TakenCount(Black) - 1;
-
-			// Randomize It But Has It That The Opposing Color Follows
-			if(colorTurn == 1){
-				Turn = Turn is Black ? White : Black;
-			} else if(colorTurn == 2){
-			Turn = Turn is White ? Black : White;
-			}
-
+          	Turn = Turn is Black ? White : Black;
 			// Check If A Piece Wasn't Taken, Change To Opposing Color
 			if(TakenCount(White) > 1 && Turn is Black){
 				Turn = White;
