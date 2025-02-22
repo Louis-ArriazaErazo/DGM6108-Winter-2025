@@ -65,11 +65,6 @@ public class Game
 		{
 			Board.Pieces.Remove(move.PieceToCapture);  // Capture Piece
 		}
-		if (move.PieceToCapture is not null &&
-			Board.GetPossibleMoves(move.PieceToMove).Any(m => m.PieceToCapture is not null))
-		{
-			Board.Aggressor = move.PieceToMove;    // Checks IF It's Possible Move
-		}
 		else
 		{
 			Board.Aggressor = null;
@@ -77,10 +72,10 @@ public class Game
 			
           	Turn = Turn is Black ? White : Black;
 			// Check If A Piece Wasn't Taken, Change To Opposing Color
-			if(TakenCount(White) > 1 && Turn is Black){
+			if(TakenCount(White) >= 1 && Turn is Black){
 				Turn = White;
 			}
-			else if(TakenCount(Black) > 1 && Turn is White){
+			else if(TakenCount(Black) >= 1 && Turn is White){
 				Turn = Black;
 			}
 		}  

@@ -5,15 +5,26 @@ using System.Globalization;
 
 Exception? exception = null;
 
+// List Of Deck, Card Discarded, Cards In Hand, Card Dealt By Dealer
 List<Card> deck;
 List<Card> discardPile;
 List<PlayerHand> playerHands;
 List<Card> dealerHand;
+
+// Player Current Money On Hand 
 int playerMoney = 100;
+
+// Amount That Can Be Betted Min and Max
 const int minimumBet = 2;
 const int maximumBet = 500;
+
+// Initial Bet Amount 
 int previousBet = 10;
+
+// Bet Value Waiting For Selected Value
 int bet;
+
+// Player Turn
 int activeHand;
 State state = State.IntroScreen;
 bool discardShuffledIntoDeck = false;
@@ -23,6 +34,8 @@ try
 	Initialize();
 	DefaultBet();
 	activeHand = 0;
+
+	// Game Runs Until A Bet Can't Be Placed Because Out Of Money
 	while (!(state is State.PlaceBet && playerMoney < minimumBet))
 	{
 		Render();
@@ -32,11 +45,11 @@ try
 				switch (state)
 				{
 					case State.IntroScreen:
-						state = State.PlaceBet;
+						state = State.PlaceBet; // State To Place Money Wager
 						break;
 					case State.PlaceBet:
-						playerMoney -= bet;
-						previousBet = bet;
+						playerMoney -= bet;   // Remove Bet Amount From Player Money
+						previousBet = bet;   // Sets Up Default Bet
 						InitializeRound();
 						if (ScoreCards(playerHands[activeHand].Cards) is 21)
 						{
@@ -594,6 +607,7 @@ class Card
 	}
 }
 
+// 
 class PlayerHand
 {
 	public List<Card> Cards = new();
@@ -602,6 +616,7 @@ class PlayerHand
 	public bool DoubledDown = false;
 }
 
+// Different Suits
 enum Suit
 {
 	Hearts,
@@ -610,6 +625,7 @@ enum Suit
 	Diamonds,
 }
 
+// Different Card Values
 enum Value
 {
 	Ace   = 01,
@@ -627,6 +643,7 @@ enum Value
 	King  = 13,
 }
 
+// Different States 
 enum State
 {
 	IntroScreen,

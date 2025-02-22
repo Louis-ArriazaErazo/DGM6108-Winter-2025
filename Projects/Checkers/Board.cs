@@ -99,24 +99,11 @@ public class Board
 	public List<Move> GetPossibleMoves(PieceColor color)
 	{
 		List<Move> moves = new();
-		if (Aggressor is not null)
-		{
-			if (Aggressor.Color != color)
-			{
-				throw new Exception($"{nameof(Aggressor)} is not null && {nameof(Aggressor)}.{nameof(Aggressor.Color)} != {nameof(color)}");
-			}
-			moves.AddRange(GetPossibleMoves(Aggressor).Where(move => move.PieceToCapture is not null));
-		}
-		else
-		{
 			foreach (Piece piece in Pieces.Where(piece => piece.Color == color))
 			{
 				moves.AddRange(GetPossibleMoves(piece));
 			}
-		}
-		return moves.Any(move => move.PieceToCapture is not null)
-			? moves.Where(move => move.PieceToCapture is not null).ToList()
-			: moves;
+		return moves;
 	}
 
 	// Possible Movement Locations Updates For Piece Coordinates
