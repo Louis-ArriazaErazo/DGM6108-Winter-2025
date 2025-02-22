@@ -16,6 +16,7 @@ using System.ComponentModel.DataAnnotations;
 // 11,12,13}
 // int [] Cards = {};
 // int [] UsedCards = {};
+
 List <Card> deck;
 List <Card> usedCards;
 List <Card> dealerHand;
