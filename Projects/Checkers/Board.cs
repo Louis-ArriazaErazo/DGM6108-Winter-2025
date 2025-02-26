@@ -124,12 +124,28 @@ public class Board
 
 
 	// If A Piece Reaches Power Increase, Movement Is Updated 
-		if(piece.PowerIncrease && piece.Promoted){
+		if(piece.PowerIncrease && piece.Promoted && piece.upgradeTotal >= 3){
 		ValidateMovement(0, -2);  // Left
 		ValidateMovement(0,2);   // Right
 		ValidateMovement(-2,0);  // Down
 		ValidateMovement(2,0);  // Up
 		}
+
+		if(piece.PowerIncrease && piece.Promoted && piece.upgradeTotal >= 6){
+		ValidateMovement(0, -3);  // Left
+		ValidateMovement(0,3);   // Right
+		ValidateMovement(-3,0);  // Down
+		ValidateMovement(3,0);  // Up
+		}
+
+		if(piece.PowerIncrease && piece.Promoted && piece.upgradeTotal >= 9){
+		ValidateMovement(0, -4);  // Left
+		ValidateMovement(0,4);   // Right
+		ValidateMovement(-4,0);  // Down
+		ValidateMovement(4,0);  // Up
+		}
+
+
 
 		return moves;
 		
