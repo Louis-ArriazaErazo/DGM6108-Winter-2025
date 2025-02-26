@@ -9,16 +9,6 @@
 // Requirement B: 
 // Abilities 
 
-// Updates were made for these changes within the cs files of Game.cs, Board.cs and Piece.cs
-// The changes that took place in Board.cs were changing ValidateDiagonal to ValidateMovement. Due to the
-// movement of each piece being determined by the space like a graph. I made it that the coordinates for dx
-// and dy were updated to (0,-1) for left, (0,1) for right. Then (1,0) for up and (-1,0) for down. I later on
-// updated this segment to have it be that the new special piece that is obtained by increasing the TakenCount to
-// above 3. Allows the player to move vertically and horitonzally by values of 2. This new power was added to the
-// Piece.cs to have a new class with unique attributes be called throughout the program. In Game.cs the modifications
-// were having the player that is played after the last is randomize. Meaning it could be the black piece player again 
-// or the white piece again. Then I added that the random is voided when a player takes a piece from the other player. 
-// It defaults to being the other player's turn. 
 
 Exception? exception = null;
 
