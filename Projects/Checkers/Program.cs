@@ -281,12 +281,17 @@ void RenderGameState(Game game, Player? playerMoved = null, (int X, int Y)? sele
     // Updating Piece To King 
 	static char ToChar(Piece? piece) =>
 		piece is null ? Vacant :
-		(piece.Color, piece.Promoted) switch
+		(piece.Color, piece.upgradeType) switch
 		{
-			(Black, false) => BlackPiece,
-			(Black, true)  => BlackKing,
-			(White, false) => WhitePiece,
-			(White, true)  => WhiteKing,
+			(Black, piece.upgradeType.Type1) => BlackPiece,
+			(Black, piece.upgradeType.Type3)  => BlackKing,
+			(Black, piece.upgradeType.Type6) => BlackPiece,
+			(Black, piece.upgradeType.Type9)  => BlackKing,
+			(White, piece.upgradeType.Type1) => WhitePiece,
+			(White,piece.upgradeType.Type3)  => WhiteKing,
+			(White,piece.upgradeType.Type6)  => WhiteKing,
+			(White,piece.upgradeType.Type)  => WhiteKing,
+
 			_ => throw new NotImplementedException(),
 		};
 }
