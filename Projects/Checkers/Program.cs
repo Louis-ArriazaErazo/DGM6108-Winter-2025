@@ -287,6 +287,7 @@ void RenderGameState(Game game, Player? playerMoved = null, (int X, int Y)? sele
 		piece is null ? Vacant :
 		(piece.Color, piece.Promoted, piece.upgradeTotal) switch
 		{
+			// Updated Piece Looks For Each Upgrade
 			(Black, false, 0) => BlackPiece,
 			(Black, true, 3)  => BlackKing,
 		    (Black, true,  6)  => BlackKing2,
