@@ -206,8 +206,12 @@ void RenderGameState(Game game, Player? playerMoved = null, (int X, int Y)? sele
 {
 	const char BlackPiece = '○';  // Different Pieces As Labeled 
 	const char BlackKing  = '☺';
+	const char BlackKing2 = '△';
+	const char BlackKing3 = '▷';
 	const char WhitePiece = '◙';
-	const char WhiteKing  = '☻';  
+	const char WhiteKing  = '☻';
+	const char WhiteKing2 = '▲';
+	const char WhiteKing3 = '▶';  
 	const char Vacant     = '·'; // No Piece 
 
 // Board Setup Each With A Responding Coordinate And Spot 
@@ -281,16 +285,18 @@ void RenderGameState(Game game, Player? playerMoved = null, (int X, int Y)? sele
     // Updating Piece To King 
 	static char ToChar(Piece? piece) =>
 		piece is null ? Vacant :
-		(piece.Color, piece.upgradeType) switch
+		(piece.Color, piece.Promoted, piece.upgradeTotal) switch
 		{
-			(Black, piece.upgradeType.Type1) => BlackPiece,
-			(Black, piece.upgradeType.Type3)  => BlackKing,
-			(Black, piece.upgradeType.Type6) => BlackPiece,
-			(Black, piece.upgradeType.Type9)  => BlackKing,
-			(White, piece.upgradeType.Type1) => WhitePiece,
-			(White,piece.upgradeType.Type3)  => WhiteKing,
-			(White,piece.upgradeType.Type6)  => WhiteKing,
-			(White,piece.upgradeType.Type)  => WhiteKing,
+			(Black, false, 0) => BlackPiece,
+			(Black, true, 3)  => BlackKing,
+		    (Black, true,  6)  => BlackKing2,
+		    (Black, true, 9)  => BlackKing3,
+
+
+			(White, false, 0) => WhitePiece,
+			(White, true, 3)  => WhiteKing,
+			(White, true, 6)  => WhiteKing2,
+			(White, true, 9)  => WhiteKing3,
 
 			_ => throw new NotImplementedException(),
 		};

@@ -50,38 +50,35 @@ public class Game
 		int BlackTaken = TakenCount(PieceColor.Black);
 
 		(move.PieceToMove.X, move.PieceToMove.Y) = move.To;
-		if ((move.PieceToMove.Color is Black && TakenCount(White) == 3) ||
-			(move.PieceToMove.Color is White && TakenCount(Black) == 3))
+		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 3) ||
+			(move.PieceToMove.Color is White && TakenCount(Black) >= 3))
 		{
 			move.PieceToMove.PowerIncrease = true;
-			move.PieceToMove.upgrade = piece.upgrade.Type3;     // Promote If Conditions Above Are Met
+			move.PieceToMove.Promoted = true; 
+			move.PieceToMove.upgradeTotal = 3; 
+			  // Promote If Conditions Above Are Met
 		}
-		if ((move.PieceToMove.Color is Black && TakenCount(White) == 6) ||
-			(move.PieceToMove.Color is White && TakenCount(Black) == 6))
+		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 6) ||
+			(move.PieceToMove.Color is White && TakenCount(Black) >= 6))
 		{
 			move.PieceToMove.PowerIncrease = true;
-			move.PieceToMove.upgrade = Type6;       // Promote If Conditions Above Are Met
+			move.PieceToMove.Promoted = true;
+			move.PieceToMove.upgradeTotal = 6;      // Promote If Conditions Above Are Met
 		}
-		if ((move.PieceToMove.Color is Black && TakenCount(White) == 9) ||
-			(move.PieceToMove.Color is White && TakenCount(Black) == 9))
+		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 9) ||
+			(move.PieceToMove.Color is White && TakenCount(Black) >= 9))
 		{
 			move.PieceToMove.PowerIncrease = true;
-			move.PieceToMove.upgrade = Type6;         // Promote If Conditions Above Are Met
+			move.PieceToMove.Promoted = true;  
+			move.PieceToMove.upgradeTotal = 9;      // Promote If Conditions Above Are Met
 		}
-		else
+		if (move.PieceToCapture is not null)
 		{
-			Board.Aggressor = null;
-			//Add Randomizing Who's Turn It Is
-			
-          	Turn = Turn is Black ? White : Black;
-			// Check If A Piece Wasn't Taken, Change To Opposing Color
-			if(TakenCount(White) > WhiteTaken && Turn is Black){
-				Turn = White;
-			}
-			else if(TakenCount(Black) > BlackTaken && Turn is White){
-				Turn = Black;
-			}
-		}  
+			Board.Pieces.Remove(move.PieceToCapture);
+		}
+		Board.Aggressor = null;
+		//Add Randomizing Who's Turn It Is
+		Turn = Turn is Black ? White : Black;
 		// CheckForWinner();
 	}
 

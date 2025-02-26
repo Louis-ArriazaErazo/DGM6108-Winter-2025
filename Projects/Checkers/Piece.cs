@@ -18,15 +18,10 @@ public class Piece
 // Displaying Piece When Placed On Position
 	public PieceColor Color { get; init; }
 
-	public upgradeType upgrade {get; set; }
-
  // Changing Piece Type Based On Position 
-	public enum upgradeType {
-		Type1,
-		Type3,
-		Type6, 
-		Type9,
-	}
+	public bool Promoted { get; set; }
+	
+	public int upgradeTotal{ get; set; }
 
 	public bool PowerIncrease { get; set; }
 }
