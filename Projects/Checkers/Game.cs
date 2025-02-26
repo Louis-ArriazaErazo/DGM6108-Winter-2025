@@ -34,9 +34,6 @@ public class Game
 		Random randomturn = new Random();
 			int colorTurn = randomturn.Next(0, 2);
 
-			// int WhiteTaken = TakenCount(White) - 1;
-			// int BlackTaken = TakenCount(Black) - 1;
-
 			// Randomize It But Has It That The Opposing Color Follows
 			if(colorTurn == 0){
 				Turn = Black;
@@ -49,12 +46,10 @@ public class Game
     // Move Determined To Capture Or Promote
 	public void PerformMove(Move move)
 	{
+		int WhiteTaken = (int)(PieceColor.White - 1);
+		int BlackTaken = (int)(PieceColor.Black - 1);
+
 		(move.PieceToMove.X, move.PieceToMove.Y) = move.To;
-		if ((move.PieceToMove.Color is Black && move.To.Y is 7) ||
-			(move.PieceToMove.Color is White && move.To.Y is 0))
-		{
-			move.PieceToMove.Promoted = true; // Promote If Conditions Above Are Met
-		}
 		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 3) ||
 			(move.PieceToMove.Color is White && TakenCount(Black) >= 3))
 		{
@@ -72,10 +67,10 @@ public class Game
 			
           	Turn = Turn is Black ? White : Black;
 			// Check If A Piece Wasn't Taken, Change To Opposing Color
-			if(TakenCount(White) >= 1 && Turn is Black){
+			if(TakenCount(White) > WhiteTaken && Turn is Black){
 				Turn = White;
 			}
-			else if(TakenCount(Black) >= 1 && Turn is White){
+			else if(TakenCount(Black) > BlackTaken && Turn is White){
 				Turn = Black;
 			}
 		}  

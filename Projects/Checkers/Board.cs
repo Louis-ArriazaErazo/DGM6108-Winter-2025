@@ -131,10 +131,8 @@ public class Board
 		ValidateMovement(2,0);  // Up
 		}
 
-		return moves.Any(move => move.PieceToCapture is not null)
-			? moves.Where(move => move.PieceToCapture is not null).ToList()
-			: moves;
-
+		return moves;
+		
         // Check For Conflicting Pieces 
 		void ValidateMovement(int dx, int dy)
 		{
