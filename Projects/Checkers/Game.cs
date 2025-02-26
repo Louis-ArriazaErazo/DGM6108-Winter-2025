@@ -46,8 +46,8 @@ public class Game
     // Move Determined To Capture Or Promote
 	public void PerformMove(Move move)
 	{
-		int WhiteTaken = (int)(PieceColor.White - 1);
-		int BlackTaken = (int)(PieceColor.Black - 1);
+		int WhiteTaken = TakenCount(PieceColor.White);
+		int BlackTaken = TakenCount(PieceColor.Black);
 
 		(move.PieceToMove.X, move.PieceToMove.Y) = move.To;
 		if ((move.PieceToMove.Color is Black && TakenCount(White) >= 3) ||
@@ -55,10 +55,6 @@ public class Game
 		{
 			move.PieceToMove.PowerIncrease = true;
 			move.PieceToMove.Promoted = true;       // Promote If Conditions Above Are Met
-		}
-		if (move.PieceToCapture is not null)
-		{
-			Board.Pieces.Remove(move.PieceToCapture);  // Capture Piece
 		}
 		else
 		{
