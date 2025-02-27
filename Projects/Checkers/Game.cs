@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.Design.Serialization;
+﻿// Louis Arriaza Erazo
+// Date: 2/25/25
+
+using System.ComponentModel.Design.Serialization;
 using System.Security.Cryptography;
 
 namespace Checkers;

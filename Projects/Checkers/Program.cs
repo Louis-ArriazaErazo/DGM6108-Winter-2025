@@ -6,7 +6,8 @@
 // Pieces Are Able To Move In All Directions (Board.cs)
 // Special Pieces (Board.cs, Program.cs, Piece.cs, Move.cs)
 
-// Requirement B: 
+// Requirement B:
+ 
 // Abilities (Board.cs)
 // Move Only One Space At A Time On The Board(Left, Right, Up and Down)
 //  BlackPiece = '○'; 

@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿// Louis Arriaza Erazo
+// Date: 2/25/25
+
+using System.Reflection;
 
 namespace Checkers;
 

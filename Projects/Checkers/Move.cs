@@ -1,4 +1,7 @@
-﻿namespace Checkers;
+﻿// Louis Arriaza Erazo
+// Date: 2/25/25
+
+namespace Checkers;
 
 public class Move
 {
