@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 // Group Member:
 // Louis Arriaza Erazo
@@ -24,6 +25,7 @@ List <Card> dealerHand;
 int playerOne = 0;
 int playerTwo = 0;
 int draws = 0;
+int i = 0;
 
 // The Initial Deck With All Cards 
 void StarterDeck(){
@@ -144,16 +146,45 @@ Shuffle(deck);
 dealerHand = new List<Card>();
 
 // Number Of Rounds 
-for(int i = 0; i < 26; i++){
+int rounds = 1;
+for(i = 0; i < rounds; i++){
     cardComparsion();
 }
 
+
 // Final Screen
+string gameContinue;
+string updateRounds;
+void gameEnd(){
 Console.Clear();
 Console.WriteLine("\nFinal Results");
 Console.WriteLine($"\nPlayer Wins: {playerOne}");
 Console.WriteLine($"\nOppoonent: {playerTwo}");
 Console.WriteLine($"\nDraws: {draws}");
+
+// Asking If You Would Like To Continue 
+Console.WriteLine("Would you like to keep playing? Type: Yes or No?" );
+gameContinue = Console.ReadLine();
+
+// Number Of Rounds 
+Console.WriteLine("How many more rounds?" );
+updateRounds = Console.ReadLine();
+rounds = int.Parse(updateRounds);
+}
+ gameEnd();
+
+// Checking If The Game Continues Or Another 
+if(gameContinue == "Yes"){
+	Console.WriteLine("Game Continue");
+	for(i = 0; i < rounds; i++){
+    cardComparsion();
+}
+ gameEnd();
+
+} else {
+	Console.WriteLine("Game End");
+}
+
 
 // Class For Cards
 class Card
@@ -184,11 +215,11 @@ class Card
 		return
 		[
 			$"┌───────┐",
-			$"│{a}     │",
+			$"│{a}    │",
 			$"│       │",
 			$"│       │",
 			$"│       │",
-			$"│    {b} │",
+			$"│    {b}│",
 			$"└───────┘",
 		];
 	}
