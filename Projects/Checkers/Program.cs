@@ -2,12 +2,27 @@
 // Date: 2/25/25
 
 //  Requirement A:
-// Randomize Player Turn Order
-// Pieces Are Able To Move In All Directions 
-// Special Piece (Uses Promoted Logo)
+// Randomize Player Turn Order (Game.cs)
+// Pieces Are Able To Move In All Directions (Board.cs)
+// Special Pieces (Board.cs, Program.cs, Piece.cs, Move.cs)
 
 // Requirement B: 
-// Abilities 
+// Abilities (Board.cs)
+// Move Only One Space At A Time On The Board(Left, Right, Up and Down)
+//  BlackPiece = '○'; 
+//  WhitePiece = '◙';
+
+// Move Only Two Spaces At A Time On The Board(Left, Right, Up and Down)
+//  BlackKing  = '☺';
+//  WhiteKing  = '☻';
+
+// Move Only Three Spaces At A Time On The Board(Left, Right, Up and Down)
+//  BlackKing2 = '△';
+//  WhiteKing2 = '▲';
+
+// Move Only Four Spaces At A Time On The Board (Left, Right, Up and Down)
+//  WhiteKing3 = '▶';  
+//  BlackKing3 = '▷';
 
 
 Exception? exception = null;
@@ -212,10 +227,10 @@ void RenderGameState(Game game, Player? playerMoved = null, (int X, int Y)? sele
 	sb.AppendLine("  Checkers");
 	sb.AppendLine();
 	sb.AppendLine($"    ╔═══════════════════╗");
-	sb.AppendLine($"  8 ║  {B(0, 7)} {B(1, 7)} {B(2, 7)} {B(3, 7)} {B(4, 7)} {B(5, 7)} {B(6, 7)} {B(7, 7)}  ║ {BlackPiece} = Black");
-	sb.AppendLine($"  7 ║  {B(0, 6)} {B(1, 6)} {B(2, 6)} {B(3, 6)} {B(4, 6)} {B(5, 6)} {B(6, 6)} {B(7, 6)}  ║ {BlackKing} = Black King");
-	sb.AppendLine($"  6 ║  {B(0, 5)} {B(1, 5)} {B(2, 5)} {B(3, 5)} {B(4, 5)} {B(5, 5)} {B(6, 5)} {B(7, 5)}  ║ {WhitePiece} = White");
-	sb.AppendLine($"  5 ║  {B(0, 4)} {B(1, 4)} {B(2, 4)} {B(3, 4)} {B(4, 4)} {B(5, 4)} {B(6, 4)} {B(7, 4)}  ║ {WhiteKing} = White King");
+	sb.AppendLine($"  8 ║  {B(0, 7)} {B(1, 7)} {B(2, 7)} {B(3, 7)} {B(4, 7)} {B(5, 7)} {B(6, 7)} {B(7, 7)}  ║ {BlackPiece} = Black, {BlackKing} = 2 Space Vertical/Horizontal Upgrade");
+	sb.AppendLine($"  7 ║  {B(0, 6)} {B(1, 6)} {B(2, 6)} {B(3, 6)} {B(4, 6)} {B(5, 6)} {B(6, 6)} {B(7, 6)}  ║ {BlackKing2} = 3 Space Vertical/Horizontal Upgrade, {BlackKing3} = 4 Space Vertical/Horizontal Upgrade");
+	sb.AppendLine($"  6 ║  {B(0, 5)} {B(1, 5)} {B(2, 5)} {B(3, 5)} {B(4, 5)} {B(5, 5)} {B(6, 5)} {B(7, 5)}  ║ {WhitePiece} = White, {WhiteKing} = 2 Space Vertical/Horizontal Upgrade");
+	sb.AppendLine($"  5 ║  {B(0, 4)} {B(1, 4)} {B(2, 4)} {B(3, 4)} {B(4, 4)} {B(5, 4)} {B(6, 4)} {B(7, 4)}  ║ {WhiteKing2} = 3 Space Vertical/Horizontal Upgrade, {WhiteKing3} = 4 Space Vertical/Horizontal Upgrade");
 	sb.AppendLine($"  4 ║  {B(0, 3)} {B(1, 3)} {B(2, 3)} {B(3, 3)} {B(4, 3)} {B(5, 3)} {B(6, 3)} {B(7, 3)}  ║");
 	sb.AppendLine($"  3 ║  {B(0, 2)} {B(1, 2)} {B(2, 2)} {B(3, 2)} {B(4, 2)} {B(5, 2)} {B(6, 2)} {B(7, 2)}  ║ Taken:");
 	sb.AppendLine($"  2 ║  {B(0, 1)} {B(1, 1)} {B(2, 1)} {B(3, 1)} {B(4, 1)} {B(5, 1)} {B(6, 1)} {B(7, 1)}  ║ {game.TakenCount(White),2} x {WhitePiece}");

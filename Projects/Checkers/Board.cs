@@ -110,7 +110,7 @@ public class Board
 	public List<Move> GetPossibleMoves(Piece piece)
 	{
 		List<Move> moves = new();
-		// Rise & Run From Coordinates (Diganolly)
+		// Rise & Run From Coordinates (Diagonally)
 		ValidateMovement(-1, -1); // Down & Left
 		ValidateMovement(-1, 1);  // Down & Right
 		ValidateMovement(1, -1);  // Up & Left
