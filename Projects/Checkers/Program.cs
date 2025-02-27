@@ -7,20 +7,24 @@
 // Special Pieces (Board.cs, Program.cs, Piece.cs, Move.cs)
 
 // Requirement B:
- 
+
 // Abilities (Board.cs)
+// Standard Movement 
 // Move Only One Space At A Time On The Board(Left, Right, Up and Down)
 //  BlackPiece = '○'; 
 //  WhitePiece = '◙';
 
+// Movement Upgrade By Eliminating 3 Opposing 
 // Move Only Two Spaces At A Time On The Board(Left, Right, Up and Down)
 //  BlackKing  = '☺';
 //  WhiteKing  = '☻';
 
+// Movement Upgrade By Eliminating 6 Opposing 
 // Move Only Three Spaces At A Time On The Board(Left, Right, Up and Down)
 //  BlackKing2 = '△';
 //  WhiteKing2 = '▲';
 
+// Movement Upgrade By Eliminating 6 Opposing 
 // Move Only Four Spaces At A Time On The Board (Left, Right, Up and Down)
 //  WhiteKing3 = '▶';  
 //  BlackKing3 = '▷';
@@ -75,14 +79,14 @@ Game ShowIntroScreenAndGetOption()
 	Console.WriteLine("  alternative way to win is to trap your opponent so that they have no valid");
 	Console.WriteLine("  moves left.");
 	Console.WriteLine();
-	Console.WriteLine("  Black starts first and players take it in turns to move their pieces forward");
-	Console.WriteLine("  across the board diagonally. Should a piece reach the other side of the board");
-	Console.WriteLine("  the piece becomes a king and can then move diagonally backwards as well as");
-	Console.WriteLine("  forwards.");
+	Console.WriteLine("  First player is randomzied and then it alternates which players takes their turn");
+	Console.WriteLine("  movement can be done both diagonally and vertically. Diagonally only by one space always");
+	Console.WriteLine("  When an upgrade takes place. Movement is updated. Upgrades take place when a players takes");
+	Console.WriteLine("  3 opposing pieces, 6 opposing pieces and 9 opposing pieces.");
 	Console.WriteLine();
-	Console.WriteLine("  Pieces are captured by jumping over them diagonally. More than one enemy piece");
-	Console.WriteLine("  can be captured in the same turn by the same piece. If you can capture a piece");
-	Console.WriteLine("  you must capture a piece.");
+	Console.WriteLine("  Pieces are captured by jumping over them diagonally, vertically or horitionzally.");
+	Console.WriteLine("  3 captured pieces leads to an upgrade movement hortionzally and vertically by 2 spaces");
+	Console.WriteLine("  6 upgrades to 3 spaces and 9 upgrades to 4 spaces across the board vertically and hortionzally");
 	Console.WriteLine();
 	Console.WriteLine("  Moves are selected with the arrow keys. Use the [enter] button to select the");
 	Console.WriteLine("  from and to squares. Invalid moves are ignored.");
