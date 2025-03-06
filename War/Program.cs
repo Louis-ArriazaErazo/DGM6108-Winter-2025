@@ -71,9 +71,15 @@ void cardComparsion(){
     
     // Opponent's Card Drawing (Initial View)
     Console.WriteLine("\nOpponent's Card");
-    var dealerCard = DrawCard();
-    RenderCard(dealerCard);
-    dealerHand.Add(dealerCard);
+    var dealerCardOne = DrawCard();
+	var dealerCardTwo = DrawCard();
+	var dealerCardThree = DrawCard();
+    RenderCard(dealerCardOne);
+	RenderCard(dealerCardTwo);
+	RenderCard(dealerCardThree);
+    dealerHand.Add(dealerCardOne);
+	dealerHand.Add(dealerCardOne);
+	dealerHand.Add(dealerCardOne);
 
     // Confirming Player's Turn
     Console.WriteLine("\nPress Enter To Draw Your Card");
@@ -82,26 +88,47 @@ void cardComparsion(){
     // Opponent's Card Drawing (Secondary View)
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
-    RenderCard(dealerCard);
+    RenderCard(dealerCardOne);
+	RenderCard(dealerCardTwo);
+	RenderCard(dealerCardThree);
 
     // Player's Card Drawing 
     Console.Write("\nPlayer's Card");
-    var playerCard = DrawCard();
-    RenderCard(playerCard);
+    var playerCardOne = DrawCard();
+	var playerCardTwo = DrawCard();
+	 var playerCardThree = DrawCard();
+    RenderCard(playerCardOne);
+	RenderCard(playerCardTwo);
+	RenderCard(playerCardThree);
 
     Console.WriteLine("\nPress Enter For Results");
     Console.ReadLine();
     
     // Obtaining Values 
-    int playerValue = playerCard.GetValues();
-    int dealerValue = dealerCard.GetValues();
+    int playerValueOne = playerCardOne.GetValues(); 
+	int playerValueTwo = playerCardTwo.GetValues();
+	int playerValueThree = playerCardThree.GetValues();
+	int playerValue = playerValueOne + playerValueTwo + playerValueThree;
+
+
+    int dealerValueOne = dealerCardOne.GetValues();
+	int dealerValueTwo = dealerCardTwo.GetValues();
+	int dealerValueThree = dealerCardThree.GetValues();
+	int dealerValue = dealerValueOne + dealerValueTwo + dealerValueThree;
+
 
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
-    RenderCard(dealerCard);
+    RenderCard(dealerCardOne);
+	RenderCard(dealerCardTwo);
+	RenderCard(dealerCardThree);
+
+
 
     Console.Write("\nPlayer's Card");
-    RenderCard(playerCard);
+    RenderCard(playerCardOne); 
+	RenderCard(playerCardTwo);
+	RenderCard(playerCardThree);
 
 
 // Value Comparsion Of Card Pulled 
@@ -122,8 +149,14 @@ void cardComparsion(){
  Console.WriteLine($"\nDraws: {draws}");
 
 // Used Card Added To used after being used based on player 
- usedCards.Add(dealerCard);
- usedCards.Add(playerCard);
+ usedCards.Add(dealerCardOne);
+ usedCards.Add(dealerCardTwo);
+ usedCards.Add(dealerCardThree);
+ 
+ usedCards.Add(playerCardOne);
+ usedCards.Add(playerCardTwo);
+ usedCards.Add(playerCardThree);
+
 
  Console.WriteLine("\nPress Enter For Next Compare");
  Console.ReadLine();
@@ -146,7 +179,7 @@ Shuffle(deck);
 dealerHand = new List<Card>();
 
 // Number Of Rounds 
-int rounds = 1;
+int rounds = 10;
 for(i = 0; i < rounds; i++){
     cardComparsion();
 }
@@ -215,11 +248,11 @@ class Card
 		return
 		[
 			$"┌───────┐",
-			$"│{a}    │",
+			$"│{a}     │",
 			$"│       │",
 			$"│       │",
 			$"│       │",
-			$"│    {b}│",
+			$"│    {b} │",
 			$"└───────┘",
 		];
 	}
