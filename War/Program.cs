@@ -6,10 +6,8 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-// Group Member:
-// Louis Arriaza Erazo
-// Tianli Zhou
 
+// Louis Arriaza Erazo
 // List Of Deck, Card Discarded, Cards In Hand, Card Dealt By Dealer
 
 // int [] Cards = {1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5
@@ -132,10 +130,10 @@ void cardComparsion(){
 
 
 // Value Comparsion Of Card Pulled 
- if (playerValue > dealerValue){
+ if (playerValue < dealerValue){
     Console.WriteLine("\nPlayer Win");
     playerOne++;
- } else if (playerValue < dealerValue){
+ } else if (playerValue > dealerValue){
     Console.WriteLine("\nPlayer Lose");
     playerTwo++;
  } else if (playerValue == dealerValue){
