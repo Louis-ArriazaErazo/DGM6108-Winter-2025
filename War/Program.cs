@@ -94,7 +94,7 @@ void cardComparsion(){
     Console.Write("\nPlayer's Card");
     var playerCardOne = DrawCard();
 	var playerCardTwo = DrawCard();
-	 var playerCardThree = DrawCard();
+	var playerCardThree = DrawCard();
     RenderCard(playerCardOne);
 	RenderCard(playerCardTwo);
 	RenderCard(playerCardThree);
@@ -107,12 +107,20 @@ void cardComparsion(){
 	int playerValueTwo = playerCardTwo.GetValues();
 	int playerValueThree = playerCardThree.GetValues();
 	int playerValue = playerValueOne + playerValueTwo + playerValueThree;
-
+	
 
     int dealerValueOne = dealerCardOne.GetValues();
 	int dealerValueTwo = dealerCardTwo.GetValues();
 	int dealerValueThree = dealerCardThree.GetValues();
 	int dealerValue = dealerValueOne + dealerValueTwo + dealerValueThree;
+
+	if (playerValueOne == 0 || playerValueTwo == 0 || playerValueThree == 0){
+		playerValue = dealerValue + playerValue;
+	}
+
+	if (dealerValueOne == 0 || dealerValueTwo == 0 || dealerValueThree == 0){
+		playerValue = dealerValue + playerValue;
+	}
 
 
     Console.Clear();
@@ -238,6 +246,7 @@ class Card
 			Value.Jack  =>  "11",
 			Value.Queen =>  "12",  // Updated To Represent Number Value
 			Value.King  =>  "13",
+			Value.Joker => "J",
 			_ => ((int)Value).ToString(CultureInfo.InvariantCulture),
 		};
 		string card = $"{value}";
@@ -272,4 +281,6 @@ enum Value
 	Jack  = 11,
 	Queen = 12,
 	King  = 13,
+
+	Joker = 00,
 }
