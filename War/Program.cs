@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using System.Net.Security;
 
 
 // Louis Arriaza Erazo
@@ -29,8 +30,10 @@ int i = 0;
 void StarterDeck(){
     deck = new List<Card>();
     usedCards = new List<Card>();
+	foreach(Suit suit in Enum.GetValues(typeof(Suit))){
     foreach(Value value in Enum.GetValues(typeof(Value))){
-        deck.Add(new Card{Value = value});
+        deck.Add(new Card{Suit = suit, Value = value});
+  }
   }
 }
 
@@ -107,6 +110,10 @@ void cardComparsion(){
 	int playerValueTwo = playerCardTwo.GetValues();
 	int playerValueThree = playerCardThree.GetValues();
 	int playerValue = playerValueOne + playerValueTwo + playerValueThree;
+
+	if(playerCardOne.GetValues(typeof(Suit)) == Hearts){
+			value *= -1;
+		}
 	
 
     int dealerValueOne = dealerCardOne.GetValues();
@@ -228,6 +235,7 @@ if(gameContinue == "Yes"){
 // Class For Cards
 class Card
 {
+	public Suit Suit;
 	public Value Value;
     
     public int GetValues(){  // Get Value Classs Added To Obtain Value
@@ -235,21 +243,20 @@ class Card
     }
 
 	public const int RenderHeight = 7;
-
 	public string[] Render()
 	{
-	
+		char suit = Suit.ToString()[0];
 		string value = Value switch
 		{
 			Value.Ace   =>  "A",
 			Value.Ten   => "10",
 			Value.Jack  =>  "11",
-			Value.Queen =>  "12",  // Updated To Represent Number Value
-			Value.King  =>  "13",
+			Value.Queen =>  "Q",  // Updated To Represent Number Value
+			Value.King  =>  "K",
 			Value.Joker => "J",
 			_ => ((int)Value).ToString(CultureInfo.InvariantCulture),
 		};
-		string card = $"{value}";
+		string card = $"{value}{suit}";
 		string a = card.Length < 3 ? $"{card} " : card;
 		string b = card.Length < 3 ? $" {card}" : card;
 		return
@@ -263,6 +270,15 @@ class Card
 			$"└───────┘",
 		];
 	}
+}
+
+// Different Suit Values
+enum Suit
+{
+	Hearts,
+	Clubs,
+	Spades,
+	Diamonds,
 }
 
 // Different Card Values
