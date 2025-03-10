@@ -111,9 +111,6 @@ void cardComparsion(){
 	int playerValueThree = playerCardThree.GetValues();
 	int playerValue = playerValueOne + playerValueTwo + playerValueThree;
 
-	if(playerCardOne.GetValues(typeof(Suit)) == Hearts){
-			value *= -1;
-		}
 	
 
     int dealerValueOne = dealerCardOne.GetValues();
@@ -239,7 +236,20 @@ class Card
 	public Value Value;
     
     public int GetValues(){  // Get Value Classs Added To Obtain Value
-        return(int) Value;
+    if(Suit == Suit.Spades){
+		  return(int) Value * -1;
+	}
+	else if(Suit == Suit.Diamonds){
+		  return(int) Value * -2;
+	} else if (Suit == Suit.Clubs){
+		return (int) Value + 10;
+	} else if(Suit == Suit.Hearts && Value == Value.Queen){
+			return (int) Value - 14;
+			
+	}else if(Suit == Suit.Hearts && Value == Value.King){
+			return (int) Value - 12 + 2;
+	} else
+		return(int) Value;
     }
 
 	public const int RenderHeight = 7;
@@ -251,6 +261,7 @@ class Card
 			Value.Ace   =>  "A",
 			Value.Ten   => "10",
 			Value.Jack  =>  "11",
+
 			Value.Queen =>  "Q",  // Updated To Represent Number Value
 			Value.King  =>  "K",
 			Value.Joker => "J",
