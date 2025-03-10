@@ -117,28 +117,45 @@ void cardComparsion(){
 	int dealerValueTwo = dealerCardTwo.GetValues();
 	int dealerValueThree = dealerCardThree.GetValues();
 	int dealerValue = dealerValueOne + dealerValueTwo + dealerValueThree;
-
+// Joker Check 
 	if (playerValueOne == 0 || playerValueTwo == 0 || playerValueThree == 0){
 		playerValue = dealerValue + playerValue;
 	}
 
 	if (dealerValueOne == 0 || dealerValueTwo == 0 || dealerValueThree == 0){
-		playerValue = dealerValue + playerValue;
+		dealerValue = playerValue + dealerValue;
 	}
+
+// Jack Check
+	// if (playerValueOne == 0 || playerValueTwo == 0 || playerValueThree == 0){
+	// 	playerValue = dealerValue + playerValue;
+	// }
+
+	// if (dealerValueOne == 0 || dealerValueTwo == 0 || dealerValueThree == 0){
+	// 	playerValue = dealerValue + playerValue;
+	// }
 
 
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
     RenderCard(dealerCardOne);
+	Console.WriteLine($"{dealerValueOne}");
 	RenderCard(dealerCardTwo);
+	Console.WriteLine($"{dealerValueTwo}");
 	RenderCard(dealerCardThree);
+	Console.WriteLine($"{dealerValueThree}");
+	Console.WriteLine($"{dealerValue}");
 
 
 
     Console.Write("\nPlayer's Card");
     RenderCard(playerCardOne); 
+	Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
+	Console.WriteLine($"{playerValueTwo}");
 	RenderCard(playerCardThree);
+	Console.WriteLine($"{playerValueThree}");
+	Console.WriteLine($"{playerValue}");
 
 
 // Value Comparsion Of Card Pulled 
@@ -240,12 +257,12 @@ class Card
 		  return(int) Value * -1;
 	}
 	else if(Suit == Suit.Diamonds){
-		  return(int) Value * -2;
+		  return(int) Value * 2;
 	} else if (Suit == Suit.Clubs){
 		return (int) Value + 10;
 	} else if(Suit == Suit.Hearts && Value == Value.Queen){
 			return (int) Value - 14;
-			
+
 	}else if(Suit == Suit.Hearts && Value == Value.King){
 			return (int) Value - 12 + 2;
 	} else
