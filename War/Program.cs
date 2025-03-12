@@ -11,6 +11,9 @@ using System.Net.Security;
 // Louis Arriaza Erazo
 // DGM 6308 
 // 03/12/25
+// Updates Made Are The Card Effects For The Suits Of Spades, Diamonds and Clubs
+// Updates Made For The Card Effects Of All Jokers & The King, The Queen and Jack Of Hearts
+// Only Current Issue Is The Continue Phase Ending After The First Initial Continue (Will Be Worked On)
 
 // List Setup For Deck, Used Cards, Opponent's Hand (dealerHand)
 List <Card> deck;
@@ -158,23 +161,23 @@ void cardComparsion(){
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
     RenderCard(dealerCardOne);
-	Console.WriteLine($"{dealerValueOne}");
+	// Console.WriteLine($"{dealerValueOne}");
 	RenderCard(dealerCardTwo);
-	Console.WriteLine($"{dealerValueTwo}");
+	// Console.WriteLine($"{dealerValueTwo}");
 	RenderCard(dealerCardThree);
-	Console.WriteLine($"{dealerValueThree}");
-	Console.WriteLine($"{dealerValue}");
+	// Console.WriteLine($"{dealerValueThree}");
+	// Console.WriteLine($"{dealerValue}");
 
 
 
     Console.Write("\nPlayer's Card");
     RenderCard(playerCardOne); 
-	Console.WriteLine($"{playerValueOne}");
+	// Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
-	Console.WriteLine($"{playerValueTwo}");
+	// Console.WriteLine($"{playerValueTwo}");
 	RenderCard(playerCardThree);
-	Console.WriteLine($"{playerValueThree}");
-	Console.WriteLine($"{playerValue}");
+	// Console.WriteLine($"{playerValueThree}");
+	// Console.WriteLine($"{playerValue}");
 
 
 // Value Comparsion Of Card Pulled In Comparsion To User and Opponent
