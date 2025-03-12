@@ -9,27 +9,27 @@ using System.Net.Security;
 
 
 // Louis Arriaza Erazo
-// List Of Deck, Card Discarded, Cards In Hand, Card Dealt By Dealer
+// DGM 6308 
+// 03/12/25
 
-// int [] Cards = {1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5
-// 6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10
-// 11,12,13}
-// int [] Cards = {};
-// int [] UsedCards = {};
-
+// List Setup For Deck, Used Cards, Opponent's Hand (dealerHand)
 List <Card> deck;
 List <Card> usedCards;
 List <Card> dealerHand;
 
+// Initial Scores For Player and Opponent and Draws
 int playerOne = 0;
 int playerTwo = 0;
 int draws = 0;
 int i = 0;
 
+
 // The Initial Deck With All Cards 
 void StarterDeck(){
     deck = new List<Card>();
     usedCards = new List<Card>();
+
+	// Iterates Through Each Suit and Value To Set It For A Card Draw
 	foreach(Suit suit in Enum.GetValues(typeof(Suit))){
     foreach(Value value in Enum.GetValues(typeof(Value))){
         deck.Add(new Card{Suit = suit, Value = value});
@@ -47,16 +47,19 @@ void Shuffle(List<Card> cards)
 	}
 }
 
-// Function Where Used Cards Are Added To Discard Deck
+// Function Used To Add Drawn/Used Cards To Discarded Deck
 void discardCards(){
     deck.AddRange(usedCards);
     usedCards.Clear();
+
+	// Reshuffles Cards Out Of The Remaining Cards 
     Shuffle(deck);
 }
 
 // Draws A Card and Removes It From Deck
 Card DrawCard()
 {
+	// Continues To Draw Till No Cards Are Left
 	if (deck.Count <= 0)
 	{
 		discardCards();
@@ -72,12 +75,18 @@ void cardComparsion(){
     
     // Opponent's Card Drawing (Initial View)
     Console.WriteLine("\nOpponent's Card");
+
+	// Variable Setup For Each Of The Opponent's Three Card Draws 
     var dealerCardOne = DrawCard();
 	var dealerCardTwo = DrawCard();
 	var dealerCardThree = DrawCard();
+
+	// Rendering The Three Cards That Are Drawn 
     RenderCard(dealerCardOne);
 	RenderCard(dealerCardTwo);
 	RenderCard(dealerCardThree);
+
+    // Setups Card To Opponent's Hand 
     dealerHand.Add(dealerCardOne);
 	dealerHand.Add(dealerCardOne);
 	dealerHand.Add(dealerCardOne);
@@ -86,6 +95,7 @@ void cardComparsion(){
     Console.WriteLine("\nPress Enter To Draw Your Card");
     Console.ReadLine();
     
+
     // Opponent's Card Drawing (Secondary View)
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
@@ -95,29 +105,37 @@ void cardComparsion(){
 
     // Player's Card Drawing 
     Console.Write("\nPlayer's Card");
+
+	// Variable Setup For Each Of The Player's Three Card Draws 
     var playerCardOne = DrawCard();
 	var playerCardTwo = DrawCard();
 	var playerCardThree = DrawCard();
+
+	// Rendering The Three Cards That Are Drawn 
     RenderCard(playerCardOne);
 	RenderCard(playerCardTwo);
 	RenderCard(playerCardThree);
 
+   // Confirms To Show Result Screen 
     Console.WriteLine("\nPress Enter For Results");
     Console.ReadLine();
     
-    // Obtaining Values 
+    // Obtains Values From Each Of The Player's Cards
     int playerValueOne = playerCardOne.GetValues(); 
 	int playerValueTwo = playerCardTwo.GetValues();
 	int playerValueThree = playerCardThree.GetValues();
 	int playerValue = playerValueOne + playerValueTwo + playerValueThree;
 
-	
-
+	// Obtains Values From Each Of The Opponent's Cards
     int dealerValueOne = dealerCardOne.GetValues();
 	int dealerValueTwo = dealerCardTwo.GetValues();
 	int dealerValueThree = dealerCardThree.GetValues();
 	int dealerValue = dealerValueOne + dealerValueTwo + dealerValueThree;
-// Joker Check 
+
+
+// Joker Cards Mechanic Change, If Any Of The Player's or Opponent's Card Are
+// A Joker, The Value Of The User That Drew It Will Equal It's Competition's Value 
+
 	if (playerValueOne == 0 || playerValueTwo == 0 || playerValueThree == 0){
 		playerValue = dealerValue + playerValue;
 	}
@@ -126,39 +144,42 @@ void cardComparsion(){
 		dealerValue = playerValue + dealerValue;
 	}
 
-// Jack Check
-	// if (playerValueOne == 0 || playerValueTwo == 0 || playerValueThree == 0){
+// Jack Check Similar To Joker Except It Only Work For The Jack Of Hearts 
+// For This Reason It's Currently Commented Out, While I Develop The Last Segment  
+	// if (playerValueOne == 11 || playerValueTwo == 11 || playerValueThree == 11){
 	// 	playerValue = dealerValue + playerValue;
 	// }
 
-	// if (dealerValueOne == 0 || dealerValueTwo == 0 || dealerValueThree == 0){
+	// if (dealerValueOne == 11 || dealerValueTwo == 11 || dealerValueThree == 11){
 	// 	playerValue = dealerValue + playerValue;
 	// }
 
-
+// Displays Cards During Comparsion (Console.WriteLine Comments Used For Testing Purposes)
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
     RenderCard(dealerCardOne);
-	Console.WriteLine($"{dealerValueOne}");
+	// Console.WriteLine($"{dealerValueOne}");
 	RenderCard(dealerCardTwo);
-	Console.WriteLine($"{dealerValueTwo}");
+	// Console.WriteLine($"{dealerValueTwo}");
 	RenderCard(dealerCardThree);
-	Console.WriteLine($"{dealerValueThree}");
-	Console.WriteLine($"{dealerValue}");
+	// Console.WriteLine($"{dealerValueThree}");
+	// Console.WriteLine($"{dealerValue}");
 
 
 
     Console.Write("\nPlayer's Card");
     RenderCard(playerCardOne); 
-	Console.WriteLine($"{playerValueOne}");
+	// Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
-	Console.WriteLine($"{playerValueTwo}");
+	// Console.WriteLine($"{playerValueTwo}");
 	RenderCard(playerCardThree);
-	Console.WriteLine($"{playerValueThree}");
-	Console.WriteLine($"{playerValue}");
+	// Console.WriteLine($"{playerValueThree}");
+	// Console.WriteLine($"{playerValue}");
 
 
-// Value Comparsion Of Card Pulled 
+// Value Comparsion Of Card Pulled In Comparsion To User and Opponent
+// Increment Score Based On Who Has The Lowest Value 
+
  if (playerValue < dealerValue){
     Console.WriteLine("\nPlayer Win");
     playerOne++;
@@ -175,7 +196,7 @@ void cardComparsion(){
  Console.WriteLine($"\nOppoonent: {playerTwo}");
  Console.WriteLine($"\nDraws: {draws}");
 
-// Used Card Added To used after being used based on player 
+// Used Card Added To Used Card Deck
  usedCards.Add(dealerCardOne);
  usedCards.Add(dealerCardTwo);
  usedCards.Add(dealerCardThree);
@@ -206,7 +227,7 @@ Shuffle(deck);
 dealerHand = new List<Card>();
 
 // Number Of Rounds 
-int rounds = 10;
+int rounds = 26;
 for(i = 0; i < rounds; i++){
     cardComparsion();
 }
@@ -215,6 +236,8 @@ for(i = 0; i < rounds; i++){
 // Final Screen
 string gameContinue;
 string updateRounds;
+
+// Function Used To Continue Game After Completion (Error Where After Restarting The First. Quits Game Must Be Fixed)
 void gameEnd(){
 Console.Clear();
 Console.WriteLine("\nFinal Results");
@@ -222,20 +245,26 @@ Console.WriteLine($"\nPlayer Wins: {playerOne}");
 Console.WriteLine($"\nOppoonent: {playerTwo}");
 Console.WriteLine($"\nDraws: {draws}");
 
-// Asking If You Would Like To Continue 
+// Asks The User If They Would Like To Continue 
 Console.WriteLine("Would you like to keep playing? Type: Yes or No?" );
 gameContinue = Console.ReadLine();
 
-// Number Of Rounds 
+// Asks The User How Many More Rounds They Wish To Play
 Console.WriteLine("How many more rounds?" );
+
+// Takes Number Typed By User, Converts It To Int 
 updateRounds = Console.ReadLine();
 rounds = int.Parse(updateRounds);
+
 }
- gameEnd();
+ gameEnd(); // Function Call For Game End
+
 
 // Checking If The Game Continues Or Another 
 if(gameContinue == "Yes"){
 	Console.WriteLine("Game Continue");
+
+// Updated Rounds Based On User Input
 	for(i = 0; i < rounds; i++){
     cardComparsion();
 }
@@ -249,20 +278,31 @@ if(gameContinue == "Yes"){
 // Class For Cards
 class Card
 {
-	public Suit Suit;
-	public Value Value;
+	public Suit Suit;  // Suit References 
+	public Value Value; // Value References 
     
     public int GetValues(){  // Get Value Classs Added To Obtain Value
+
+	// Different Suit Effect Setup 
+
+	// If Card Is A Suit Of Spade, Then Their Values Will Be Mutliplied -1
     if(Suit == Suit.Spades){
 		  return(int) Value * -1;
 	}
+
+	// If Card Is A Suit Of Diamond, Then Their Values Will Be Mutliplied 2
 	else if(Suit == Suit.Diamonds){
 		  return(int) Value * 2;
+
+	// If Card Is A Suit Of Clubs, Then Their Values Will Added By 10 
 	} else if (Suit == Suit.Clubs){
 		return (int) Value + 10;
+
+	// If The Card Is A Queen Of Suits, Then It's Value Will Be A Minus 2 Card 
 	} else if(Suit == Suit.Hearts && Value == Value.Queen){
 			return (int) Value - 14;
 
+    // If The Card Is A Queen Of Suits, Then It's Value Will Be A Plus 2 Card 
 	}else if(Suit == Suit.Hearts && Value == Value.King){
 			return (int) Value - 12 + 2;
 	} else
@@ -277,11 +317,11 @@ class Card
 		{
 			Value.Ace   =>  "A",
 			Value.Ten   => "10",
-			Value.Jack  =>  "11",
+			Value.Jack  =>  "11", // Changed Jack To 11 
 
-			Value.Queen =>  "Q",  // Updated To Represent Number Value
+			Value.Queen =>  "Q",  
 			Value.King  =>  "K",
-			Value.Joker => "J",
+			Value.Joker => "J",  // Added Value J As Joker 
 			_ => ((int)Value).ToString(CultureInfo.InvariantCulture),
 		};
 		string card = $"{value}{suit}";
@@ -290,11 +330,11 @@ class Card
 		return
 		[
 			$"┌───────┐",
-			$"│{a}     │",
+			$"│{a}    │",
 			$"│       │",
 			$"│       │",
 			$"│       │",
-			$"│    {b} │",
+			$"│    {b}│",
 			$"└───────┘",
 		];
 	}
