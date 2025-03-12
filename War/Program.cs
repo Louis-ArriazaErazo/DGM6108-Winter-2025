@@ -145,36 +145,36 @@ void cardComparsion(){
 	}
 
 // Jack Check Similar To Joker Except It Only Work For The Jack Of Hearts 
-// For This Reason It's Currently Commented Out, While I Develop The Last Segment  
-	// if (playerValueOne == 11 || playerValueTwo == 11 || playerValueThree == 11){
-	// 	playerValue = dealerValue + playerValue;
-	// }
+// Updated To 14 So It Can Be Update Card Effect. Card Equals Value Of Other Two Cards 
+	if (playerValueOne == 14 || playerValueTwo == 14 || playerValueThree == 14){
+		playerValue = 2 * (playerValue - 14); 
+	}
 
-	// if (dealerValueOne == 11 || dealerValueTwo == 11 || dealerValueThree == 11){
-	// 	playerValue = dealerValue + playerValue;
-	// }
+	if (dealerValueOne == 14 || dealerValueTwo == 14 || dealerValueThree == 14){
+		dealerValue = 2 * (dealerValue  - 14);
+	}
 
 // Displays Cards During Comparsion (Console.WriteLine Comments Used For Testing Purposes)
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
     RenderCard(dealerCardOne);
-	// Console.WriteLine($"{dealerValueOne}");
+	Console.WriteLine($"{dealerValueOne}");
 	RenderCard(dealerCardTwo);
-	// Console.WriteLine($"{dealerValueTwo}");
+	Console.WriteLine($"{dealerValueTwo}");
 	RenderCard(dealerCardThree);
-	// Console.WriteLine($"{dealerValueThree}");
-	// Console.WriteLine($"{dealerValue}");
+	Console.WriteLine($"{dealerValueThree}");
+	Console.WriteLine($"{dealerValue}");
 
 
 
     Console.Write("\nPlayer's Card");
     RenderCard(playerCardOne); 
-	// Console.WriteLine($"{playerValueOne}");
+	Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
-	// Console.WriteLine($"{playerValueTwo}");
+	Console.WriteLine($"{playerValueTwo}");
 	RenderCard(playerCardThree);
-	// Console.WriteLine($"{playerValueThree}");
-	// Console.WriteLine($"{playerValue}");
+	Console.WriteLine($"{playerValueThree}");
+	Console.WriteLine($"{playerValue}");
 
 
 // Value Comparsion Of Card Pulled In Comparsion To User and Opponent
@@ -298,13 +298,17 @@ class Card
 	} else if (Suit == Suit.Clubs){
 		return (int) Value + 10;
 
-	// If The Card Is A Queen Of Suits, Then It's Value Will Be A Minus 2 Card 
+	// If The Card Is A Queen Of Hearts, Then It's Value Will Be A Minus 2 Card 
 	} else if(Suit == Suit.Hearts && Value == Value.Queen){
 			return (int) Value - 14;
 
-    // If The Card Is A Queen Of Suits, Then It's Value Will Be A Plus 2 Card 
+    // If The Card Is A King Of Hearts, Then It's Value Will Be A Plus 2 Card 
 	}else if(Suit == Suit.Hearts && Value == Value.King){
 			return (int) Value - 12 + 2;
+
+	// If The Card Is A Jack Of Hearts, Then It Will Be Updated To 14 
+	}else if(Suit == Suit.Hearts && Value == Value.Jack){
+			return (int) Value + 3;
 	} else
 		return(int) Value;
     }
