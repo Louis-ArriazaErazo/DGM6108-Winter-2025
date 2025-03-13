@@ -107,7 +107,7 @@ void cardComparsion(){
 	RenderCard(dealerCardThree);
 
     // Player's Card Drawing 
-    Console.Write("\nPlayer's Card");
+    Console.WriteLine("\nPlayer's Card");
 
 	// Variable Setup For Each Of The Player's Three Card Draws 
     var playerCardOne = DrawCard();
