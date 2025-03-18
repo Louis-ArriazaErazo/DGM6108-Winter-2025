@@ -149,20 +149,20 @@ void cardComparsion(){
 
 // Jack Check Similar To Joker Except It Only Work For The Jack Of Hearts 
 // Updated To 14 So It Can Be Update Card Effect. Card Equals Value Of Other Two Cards 
-	if (playerValueOne == 14 || playerValueTwo == 14 || playerValueThree == 14){
-		playerValue = 2 * (playerValue - 14); 
+	if (playerValueOne == 25 || playerValueTwo == 25 || playerValueThree == 25){
+		playerValue = 2 * (playerValue - 25); 
 	}
 
-	if (dealerValueOne == 14 || dealerValueTwo == 14 || dealerValueThree == 14){
-		dealerValue = 2 * (dealerValue  - 14);
+	if (dealerValueOne == 25 || dealerValueTwo == 25 || dealerValueThree == 25){
+		dealerValue = 2 * (dealerValue  - 25);
 	}
 
-if (playerValueOne == 15 || playerValueTwo == 15 || playerValueThree == 15){
-		playerValue = dealerValue - 14;
+if (playerValueOne == 30 || playerValueTwo == 30 || playerValueThree == 30){
+		playerValue = dealerValue - 29;
 	}
 
-	if (dealerValueOne == 15 || dealerValueTwo == 15 || dealerValueThree == 15){
-		dealerValue = playerValue - 14;
+	if (dealerValueOne == 30 || dealerValueTwo == 30 || dealerValueThree == 30){
+		dealerValue = playerValue - 29;
 	}
 
 
@@ -319,7 +319,7 @@ class Card
 			return (int) Value - 14;
 
 	} else if (Suit == Suit.Hearts && Value == Value.Ace){
-           return (int) Value + 14;
+           return (int) Value + 29;
 
     // If The Card Is A King Of Hearts, Then It's Value Will Be A Plus 2 Card 
 	}else if(Suit == Suit.Hearts && Value == Value.King){
@@ -327,7 +327,7 @@ class Card
 
 	// If The Card Is A Jack Of Hearts, Then It Will Be Updated To 14 
 	}else if(Suit == Suit.Hearts && Value == Value.Jack){
-			return (int) Value + 3;
+			return (int) Value + 14;
 	} else
 		return(int) Value;
     }
