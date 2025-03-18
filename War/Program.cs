@@ -157,6 +157,15 @@ void cardComparsion(){
 		dealerValue = 2 * (dealerValue  - 14);
 	}
 
+if (playerValueOne == 15 || playerValueTwo == 15 || playerValueThree == 15){
+		playerValue = dealerValue - 14;
+	}
+
+	if (dealerValueOne == 15 || dealerValueTwo == 15 || dealerValueThree == 15){
+		dealerValue = playerValue - 14;
+	}
+
+
 // Displays Cards During Comparsion (Console.WriteLine Comments Used For Testing Purposes)
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
@@ -304,6 +313,9 @@ class Card
 	// If The Card Is A Queen Of Hearts, Then It's Value Will Be A Minus 2 Card 
 	} else if(Suit == Suit.Hearts && Value == Value.Queen){
 			return (int) Value - 14;
+
+	} else if (Suit == Suit.Hearts && Value == Value.Ace){
+           return (int) Value + 14;
 
     // If The Card Is A King Of Hearts, Then It's Value Will Be A Plus 2 Card 
 	}else if(Suit == Suit.Hearts && Value == Value.King){
