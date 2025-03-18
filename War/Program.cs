@@ -170,23 +170,23 @@ if (playerValueOne == 15 || playerValueTwo == 15 || playerValueThree == 15){
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
     RenderCard(dealerCardOne);
-	// Console.WriteLine($"{dealerValueOne}");
+	Console.WriteLine($"{dealerValueOne}");
 	RenderCard(dealerCardTwo);
-	// Console.WriteLine($"{dealerValueTwo}");
+	Console.WriteLine($"{dealerValueTwo}");
 	RenderCard(dealerCardThree);
-	// Console.WriteLine($"{dealerValueThree}");
-	// Console.WriteLine($"{dealerValue}");
+	Console.WriteLine($"{dealerValueThree}");
+	Console.WriteLine($"{dealerValue}");
 
 
 
     Console.Write("\nPlayer's Card");
     RenderCard(playerCardOne); 
-	// Console.WriteLine($"{playerValueOne}");
+	Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
-	// Console.WriteLine($"{playerValueTwo}");
+	Console.WriteLine($"{playerValueTwo}");
 	RenderCard(playerCardThree);
-	// Console.WriteLine($"{playerValueThree}");
-	// Console.WriteLine($"{playerValue}");
+	Console.WriteLine($"{playerValueThree}");
+	Console.WriteLine($"{playerValue}");
 
 
 // Value Comparsion Of Card Pulled In Comparsion To User and Opponent
@@ -298,10 +298,14 @@ class Card
 	// Different Suit Effect Setup 
 
 	// If Card Is A Suit Of Spade, Then Their Values Will Be Mutliplied -1
-    if(Suit == Suit.Spades){
+	int zero = 00; 
+
+	if (Value == Value.Joker){
+		return (int) Value * 0;
+	}
+    else if(Suit == Suit.Spades){
 		  return(int) Value * -1;
 	}
-
 	// If Card Is A Suit Of Diamond, Then Their Values Will Be Mutliplied 2
 	else if(Suit == Suit.Diamonds){
 		  return(int) Value * 2;
