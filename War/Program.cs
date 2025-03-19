@@ -20,8 +20,11 @@ using System.ComponentModel.Design;
 List <Card> deck;
 List <Card> usedCards;
 List <Card> dealerHand;
+
+// Variable Setup To Check If Waiting For Input Or Not
 bool waiting = false;
 
+// Menu Options For Player Vs Player or CPU Vs CPU
 const string menu = """
 	[1] Player Vs. CPU 
 	[2] CPU Vs. CPU
@@ -29,12 +32,14 @@ const string menu = """
 
 Console.Clear();
 Console.WriteLine(menu);
+
+// Switch Case For Updating Wait Variable & Game Mode
 switch(Console.ReadKey(true).Key){
 	case ConsoleKey.D1:
 	break;
 
 	case ConsoleKey.D2: 
-	waiting = true;
+	waiting = true;  // Waiting Variable Updated To True Due To Having To Wait
 	break;
 }
 
@@ -114,6 +119,8 @@ async void cardComparsion(){
 
     // Confirming Player's Turn
     Console.WriteLine("\nPress Enter To Draw Your Card");
+
+	// Check To See If Waiting For User Input Or Not
 	if(waiting == false){
 		Console.ReadLine();
 	} else if (waiting == true){
@@ -143,6 +150,7 @@ async void cardComparsion(){
 
    // Confirms To Show Result Screen 
     Console.WriteLine("\nPress Enter For Results");
+	// Check To See If Waiting For User Input Or Not
     if(waiting == false){
 		Console.ReadLine();
 	} else if (waiting == true){
@@ -183,7 +191,10 @@ async void cardComparsion(){
 		dealerValue = 2 * (dealerValue  - 25);
 	}
 
+// Ace of Hearts Makes The Value Of Each Player's Hand Switch 
 if (playerValueOne == 1 || playerValueTwo == 1 || playerValueThree == 1 || dealerValueOne == 1 || dealerValueTwo == 1 || dealerValueThree == 1){
+		
+		// Variables Setup To Not Make Values Simply Equal Each Other
 		int switchoneValue = 0;
 		int switchtwoValue = 0; 
 
@@ -250,6 +261,8 @@ if (playerValueOne == 1 || playerValueTwo == 1 || playerValueThree == 1 || deale
 
 
  Console.WriteLine("\nPress Enter For Next Compare");
+
+ // Check To See If Waiting For User Input Or Not
  if(waiting == false){
 		Console.ReadLine();
 } else if (waiting == true){
