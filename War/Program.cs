@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Security;
+using System.ComponentModel.Design;
 
 
 // Louis Arriaza Erazo
@@ -19,6 +20,23 @@ using System.Net.Security;
 List <Card> deck;
 List <Card> usedCards;
 List <Card> dealerHand;
+bool waiting = false;
+
+const string menu = """
+	[1] Player Vs. CPU 
+	[2] CPU Vs. CPU
+""";
+
+Console.Clear();
+Console.WriteLine(menu);
+switch(Console.ReadKey(true).Key){
+	case ConsoleKey.D1:
+	break;
+
+	case ConsoleKey.D2: 
+	waiting = true;
+	break;
+}
 
 // Initial Scores For Player and Opponent and Draws
 int playerOne = 0;
@@ -73,9 +91,9 @@ Card DrawCard()
 }
 
 // Function Used To Compare Cards Between You and The Opponent 
-void cardComparsion(){
+async void cardComparsion(){
     Console.Clear();
-    
+	
     // Opponent's Card Drawing (Initial View)
     Console.WriteLine("\nOpponent's Card");
 
@@ -96,7 +114,11 @@ void cardComparsion(){
 
     // Confirming Player's Turn
     Console.WriteLine("\nPress Enter To Draw Your Card");
-    Console.ReadLine();
+	if(waiting == false){
+		Console.ReadLine();
+	} else if (waiting == true){
+		Thread.Sleep(10000);
+	}
     
 
     // Opponent's Card Drawing (Secondary View)
@@ -121,7 +143,11 @@ void cardComparsion(){
 
    // Confirms To Show Result Screen 
     Console.WriteLine("\nPress Enter For Results");
-    Console.ReadLine();
+    if(waiting == false){
+		Console.ReadLine();
+	} else if (waiting == true){
+		Thread.Sleep(10000);
+	}
     
     // Obtains Values From Each Of The Player's Cards
     int playerValueOne = playerCardOne.GetValues(); 
@@ -224,7 +250,11 @@ if (playerValueOne == 1 || playerValueTwo == 1 || playerValueThree == 1 || deale
 
 
  Console.WriteLine("\nPress Enter For Next Compare");
- Console.ReadLine();
+ if(waiting == false){
+		Console.ReadLine();
+} else if (waiting == true){
+		Thread.Sleep(10000);
+}
 }
 
 // Display Each Of The Cards Drawn
