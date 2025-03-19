@@ -11,10 +11,9 @@ using System.ComponentModel.Design;
 
 // Louis Arriaza Erazo
 // DGM 6308 
-// 03/12/25
-// Updates Made Are The Card Effects For The Suits Of Spades, Diamonds and Clubs
-// Updates Made For The Card Effects Of All Jokers & The King, The Queen and Jack Of Hearts
-// Only Current Issue Is The Continue Phase Ending After The First Initial Continue (Will Be Worked On)
+// 03/18/25
+// Finalize Updates For Submission
+// Rules Will Be Placed Within Menu For C# Version
 
 // List Setup For Deck, Used Cards, Opponent's Hand (dealerHand)
 List <Card> deck;
@@ -26,8 +25,32 @@ bool waiting = false;
 
 // Menu Options For Player Vs Player or CPU Vs CPU
 const string menu = """
-	[1] Player Vs. CPU 
-	[2] CPU Vs. CPU
+Suit Effects:
+
+If a suit of Clubs is drawn. The value of the card is the value plus 10. 
+
+If a suit of Spades is drawn. The value of the card will be the negative of the value. 
+
+If a suit of Diamonds is drawn. The value of the card will be 2 times its value. 
+
+If a suit of Hearts. The value of the card is the original value. 
+
+Special Cards: 
+
+Jokers will equal the value of the opposing player's combined hand.
+
+King(Hearts) will add 2 to whatever the value of the other two cards in hand. 
+
+Queen(Hearts) will subtract 2 to whatever the value of the other two cards in hand.
+
+Ace(Hearts) will have the two players swap hands and return to a value of 1 for new comparsion. 
+
+
+Select A Game Mode:
+
+[1] Player Vs. CPU 
+[2] CPU Vs. CPU
+
 """;
 
 Console.Clear();
