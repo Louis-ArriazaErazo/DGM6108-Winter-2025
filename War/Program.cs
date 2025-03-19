@@ -287,11 +287,12 @@ Shuffle(deck);
 dealerHand = new List<Card>();
 
 // Number Of Rounds 
-int rounds = 26;
+int rounds = 1;
 for(i = 0; i < rounds; i++){
     cardComparsion();
 }
 
+gameEnd();
 
 // Final Screen
 string gameContinue;
@@ -309,31 +310,29 @@ Console.WriteLine($"\nDraws: {draws}");
 Console.WriteLine("Would you like to keep playing? Type: Yes or No?" );
 gameContinue = Console.ReadLine();
 
+// Checking If The Game Continues Or Another 
+if(gameContinue == "Yes"){
+	Console.WriteLine("Game Continue");
+
 // Asks The User How Many More Rounds They Wish To Play
 Console.WriteLine("How many more rounds?" );
 
 // Takes Number Typed By User, Converts It To Int 
 updateRounds = Console.ReadLine();
 rounds = int.Parse(updateRounds);
-
-}
- gameEnd(); // Function Call For Game End
-
-
-// Checking If The Game Continues Or Another 
-if(gameContinue == "Yes"){
-	Console.WriteLine("Game Continue");
+gameContinue = Console.ReadLine();
 
 // Updated Rounds Based On User Input
 	for(i = 0; i < rounds; i++){
     cardComparsion();
-}
- gameEnd();
-
-} else {
+	}
+} else if(gameContinue == "No"){
 	Console.WriteLine("Game End");
+	return;
 }
+gameEnd(); // Function Call For Game End
 
+}
 
 // Class For Cards
 class Card
@@ -345,8 +344,7 @@ class Card
 
 	// Different Suit Effect Setup 
 
-	// If Card Is A Suit Of Spade, Then Their Values Will Be Mutliplied -1
-	int zero = 00; 
+	// If Card Is A Suit Of Spade, Then Their Values Will Be Mutliplied -1 
 
 	if (Value == Value.Joker){
 		return (int) Value * 0;
