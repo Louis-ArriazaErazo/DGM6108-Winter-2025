@@ -157,13 +157,18 @@ void cardComparsion(){
 		dealerValue = 2 * (dealerValue  - 25);
 	}
 
-if (playerValueOne == 30 || playerValueTwo == 30 || playerValueThree == 30){
-		playerValue = dealerValue - 29;
+if (playerValueOne == 1 || playerValueTwo == 1 || playerValueThree == 1 || dealerValueOne == 1 || dealerValueTwo == 1 || dealerValueThree == 1){
+		int switchoneValue = 0;
+		int switchtwoValue = 0; 
+
+	    switchoneValue = playerValue;
+		switchtwoValue = dealerValue;
+
+		playerValue = switchtwoValue;
+		dealerValue = switchoneValue;
+		
 	}
 
-	if (dealerValueOne == 30 || dealerValueTwo == 30 || dealerValueThree == 30){
-		dealerValue = playerValue - 29;
-	}
 
 
 // Displays Cards During Comparsion (Console.WriteLine Comments Used For Testing Purposes)
@@ -179,7 +184,7 @@ if (playerValueOne == 30 || playerValueTwo == 30 || playerValueThree == 30){
 
 
 
-    Console.Write("\nPlayer's Card");
+    Console.WriteLine("\nPlayer's Card");
     RenderCard(playerCardOne); 
 	Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
@@ -317,9 +322,6 @@ class Card
 	// If The Card Is A Queen Of Hearts, Then It's Value Will Be A Minus 2 Card 
 	} else if(Suit == Suit.Hearts && Value == Value.Queen){
 			return (int) Value - 14;
-
-	} else if (Suit == Suit.Hearts && Value == Value.Ace){
-           return (int) Value + 29;
 
     // If The Card Is A King Of Hearts, Then It's Value Will Be A Plus 2 Card 
 	}else if(Suit == Suit.Hearts && Value == Value.King){
