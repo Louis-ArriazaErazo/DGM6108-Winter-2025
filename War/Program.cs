@@ -235,23 +235,23 @@ if (playerValueOne == 1 || playerValueTwo == 1 || playerValueThree == 1 || deale
     Console.Clear();
     Console.WriteLine("\nOpponent's Card");
     RenderCard(dealerCardOne);
-	Console.WriteLine($"{dealerValueOne}");
+	// Console.WriteLine($"{dealerValueOne}");
 	RenderCard(dealerCardTwo);
-	Console.WriteLine($"{dealerValueTwo}");
+	// Console.WriteLine($"{dealerValueTwo}");
 	RenderCard(dealerCardThree);
-	Console.WriteLine($"{dealerValueThree}");
-	Console.WriteLine($"{dealerValue}");
+	// Console.WriteLine($"{dealerValueThree}");
+	// Console.WriteLine($"{dealerValue}");
 
 
 
     Console.WriteLine("\nPlayer's Card");
     RenderCard(playerCardOne); 
-	Console.WriteLine($"{playerValueOne}");
+	// Console.WriteLine($"{playerValueOne}");
 	RenderCard(playerCardTwo);
-	Console.WriteLine($"{playerValueTwo}");
+	// Console.WriteLine($"{playerValueTwo}");
 	RenderCard(playerCardThree);
-	Console.WriteLine($"{playerValueThree}");
-	Console.WriteLine($"{playerValue}");
+	// Console.WriteLine($"{playerValueThree}");
+	// Console.WriteLine($"{playerValue}");
 
 
 // Value Comparsion Of Card Pulled In Comparsion To User and Opponent
@@ -289,7 +289,7 @@ if (playerValueOne == 1 || playerValueTwo == 1 || playerValueThree == 1 || deale
  if(waiting == false){
 		Console.ReadLine();
 } else if (waiting == true){
-		Thread.Sleep(10000);
+		Thread.Sleep(5000);
 }
 }
 
@@ -310,7 +310,7 @@ Shuffle(deck);
 dealerHand = new List<Card>();
 
 // Number Of Rounds 
-int rounds = 1;
+int rounds = 26;
 for(i = 0; i < rounds; i++){
     cardComparsion();
 }
